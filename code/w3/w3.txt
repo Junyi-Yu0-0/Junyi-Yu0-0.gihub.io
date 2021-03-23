@@ -1,0 +1,71 @@
+int count = 15;
+float[] posX = new float[count]; 
+float[] posY = new float[count];
+float[] speedX = new float[count];
+float[] speedY = new float[count];
+float[] sizeW = new float[count];
+float[] sizeH = new float[count];
+float[] sizer1=new float[count];
+float[] sizer2=new float[count];
+float[] sizer3=new float[count];
+float[] sizer4=new float[count];
+color[] colors=new color[count];
+int[] counter1=new int[count];
+
+void setup() { 
+  size(600, 600);
+  for (int i=0; i < posX.length; i++) { 
+    posX[i] = width/2; 
+    posY[i] = height/2; 
+    speedX[i] = random(-5, 5); 
+    speedY[i] = random(-5, 5); 
+    sizeW[i] = random(20, 25); 
+    sizeH[i] = random(20, 100); 
+    sizer1[i]= random(0,90);
+    sizer2[i]= random(0,90);
+    sizer3[i]= random(0,90);
+    sizer4[i]= random(0,90);
+    colors[i]= color(random(0,255),(random(0,255)),(random(0,255)));
+    counter1[i]= int(random(-5,5));
+  }
+} 
+void draw() { 
+  background(155); 
+  fill(255); 
+  rect(40, 40, width-80, height-80); 
+  for (int i = 0; i < posX.length; i++) { 
+
+    posX[i] += speedX[i]; 
+    posY[i] += speedY[i]; 
+    fill(colors[i]); 
+    ellipse(posX[i], posY[i], sizeW[i], sizeH[i]); 
+
+    if (posX[i] < 40+sizeW[i]/2 || posX[i] > (width-40)-sizeW[i]/2 ) { 
+      speedX[i] = -speedX[i];
+    } 
+    if (posY[i] < 40+sizeW[i]/2 || posY[i] > (height-40)-sizeW[i]/2) { 
+      speedY[i] = -speedY[i];
+    }
+    
+  }
+  for (int i=0;i<1; i++){
+  rotate(radians(counter1[i]));
+  }
+  
+  for (int i = 0; i < posX.length; i++) { 
+
+    posX[i] += speedX[i]; 
+    posY[i] += speedY[i]; 
+    fill(colors[i]);
+    rect(posX[i], posY[i], sizeW[i], sizeH[i],sizer1[i],sizer2[i],sizer3[i],sizer4[i]);
+
+
+    if (posX[i] < 40+sizeW[i]/2 || posX[i] > (width-40)-sizeW[i]/2 ) { 
+      speedX[i] = -speedX[i];
+    } 
+    if (posY[i] < 40+sizeW[i]/2 || posY[i] > (height-40)-sizeW[i]/2) { 
+      speedY[i] = -speedY[i];
+    }
+  
+} 
+}

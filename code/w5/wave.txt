@@ -1,0 +1,34 @@
+class Wave{
+  float yoff;
+  float xoff;
+  float xgoff;
+  float speed;
+  color c;
+  float s=0;
+  
+  
+  Wave(color tempc, float tempXpos, float tempYpos){
+    c=tempc;
+    xgoff=tempXpos;
+    speed=tempYpos;
+  }
+  
+  void up(){
+    fill(c);
+    noStroke();
+    beginShape();
+    float xoff = 0;
+    for (float x = 0; x <= width; x += 10) {
+    float y = map(noise(xoff, yoff), 0, 1, 100,150);
+    vertex(x, y+(700-s));
+    xoff += 0.05+xgoff;
+      }
+    yoff += 0.01;
+    vertex(width, height);
+    vertex(0, height);
+    endShape(CLOSE);
+    if (millis()>3000){
+    s=s+0.1;
+    }
+  }
+}

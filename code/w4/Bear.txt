@@ -1,0 +1,80 @@
+class Bear {
+  int count=4;
+  color c;
+  float xpos;
+  float ypos;
+  float speed;
+  float scaler;
+  
+  Bear(color tempC, float tempXpos, float tempYpos, float tempSpeed, float tempSize){
+    c=tempC;
+    xpos=tempXpos;
+    ypos=tempYpos;
+    speed=tempSpeed;
+    scaler=tempSize;
+  }
+
+
+  void zoom(){ 
+  fill(c);
+  rectMode(CENTER);
+  pushMatrix();
+  translate(xpos,ypos);
+  scale(scaler);
+  c1();
+  popMatrix();
+  scaler=scaler+.001;
+  if (scaler> 2 ) {
+     scaler = .001;
+    }
+  }
+
+  void flying() {
+  fill(c);
+  //rectMode(CENTER);
+  pushMatrix();
+  translate(random(width/2),random(height/2));
+  scale(scaler);
+  c1();
+  popMatrix();
+  scaler=scaler+.001;
+  if (scaler> 1.2 ) {
+     scaler = .001;
+    }
+  }
+  
+  void follow(){
+    fill(c);
+    pushMatrix();
+    translate(mouseX-480,mouseY-400);
+    c1();
+    popMatrix();
+  }
+  
+  void wiggle() {
+    fill(c);
+    rectMode(CENTER);
+    pushMatrix();
+    translate(xpos,ypos);
+    c1();
+    popMatrix();
+    xpos += random(-20,20);
+    ypos += random(-20,20);
+    }
+
+
+void c1(){
+  translate(width/2-50, height/2-100);
+   fill(c);
+   ellipse(-25,-45,50,50);
+   ellipse(78,-45,50,50);
+   fill(c);
+   ellipse(25,0,150,150);
+   fill(c);
+   ellipse(25,15,20,10);
+   fill(0);
+   ellipse(-15,-5,10,10);
+   ellipse(70,-5,10,10);
+   triangle(35,25,25,20,15,25);
+  }
+}
